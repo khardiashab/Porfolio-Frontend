@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import { getSpecifications } from '../../API/api.js';
+
 
 let testimonialData = [
   {
@@ -27,12 +29,35 @@ let testimonialData = [
 
 const Testimonial = () => {
   const [curInd, setCurInd] = useState(0)
+  const [testimonial, setTestimonial] = useState([]);
+  const [error, setError] = useState(null);
+
+
+  const fetchAndCacheServicesData = async () => {
+    try {
+      const cachedData = sessionStorage.getItem("services");
+      if (cachedData) {
+        setTestimonial(JSON.parse(cachedData));
+      } else {
+        const fetchData = await getSpecifications();
+        sessionStorage.setItem("services", JSON.stringify(fetchData));
+        setTestimonial(fetchData);
+      }
+    } catch (error) {
+      setError(error);
+    }
+  };
+
   useEffect(() =>{
     const interval = setInterval(() =>{
       setCurInd((curInd + 1) % 3)
     }, 3000)
     return ()=> clearInterval(interval)
   }, [curInd])
+  useEffect(()=>{
+    fetchAndCacheServicesData()
+
+  }, [testimonial])
 
   return (
     <div className='testimonial py-5' id="testimonials">

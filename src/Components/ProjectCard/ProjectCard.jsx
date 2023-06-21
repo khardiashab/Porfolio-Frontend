@@ -8,7 +8,7 @@ const ProjectCard = ({project, ind}) => {
       <div className="bg-image"
         data-mdb-ripple-color="light">
         <img src={project.images[0]} alt={project.title}
-          className="w-100" />
+          className="w-100" style={{height: "200px"}} />
       </div>
       <div className="card-body">
         <h5 className="card-title mb-3">{project.title}</h5>

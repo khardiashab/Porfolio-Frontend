@@ -64,8 +64,8 @@ const Projects = () => {
           project && (
             <div className="col projects__descriptioin text-right display-flex flex-column p-3 px-lg-5">
               <h3 className="project__heading">{project.title}</h3>
-              <a href={project.link} className="project__link lead italic">
-                Project Link
+              <a href={project.githubRepo} className="project__link lead italic">
+                githubLink...
               </a>
               <div className="text-muted" dangerouslySetInnerHTML={{__html :project.description}}></div>
             </div>
