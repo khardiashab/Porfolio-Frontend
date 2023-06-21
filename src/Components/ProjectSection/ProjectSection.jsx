@@ -15,11 +15,11 @@ const ProjectsSection = () => {
         try {
           let cachedData = sessionStorage.getItem("projects")
           if( cachedData ) {
-            setProjects(JSON.parse(cachedData))
+            setProjects(JSON.parse(cachedData).slice(0,3))
           } else {
             let fetchedData = await getProjects()
             sessionStorage.setItem("projects", JSON.stringify(fetchedData))
-            setProjects(fetchedData)
+            setProjects(fetchedData.slice(0, 3))
           }
         } catch (error) {
           setError(error)

@@ -81,7 +81,6 @@ const Testimonial = () => {
                     </p>
                   </div>
                 </div>
-
               </div>
             )
           })}
